@@ -1,0 +1,72 @@
+name: Update Packages
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-packages:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v25
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+
+      - name: Prepare parallel execution
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y parallel jq
+          mkdir -p ~/.parallel && touch ~/.parallel/will-cite
+          
+          chmod +x pkgs/*/update.sh
+
+      - name: Run Update Scripts in Parallel
+        run: |
+          parallel --line-buffer -j 10 'echo "Updating {//}..." && cd {//} && ./update.sh' ::: pkgs/*/update.sh
+
+      - name: Check for changes and commit per package
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com" 
+
+          changes_made=false
+
+          for pkg_dir in pkgs/*/; do
+            pkg_dir=${pkg_dir%/}
+            pkg=$(basename "$pkg_dir")
+            
+            if ! git diff --quiet "$pkg_dir"; then
+              json_file="$pkg_dir/${pkg}.json"
+              
+              if [ -f "$json_file" ]; then
+                old_version=$(git show "HEAD:$json_file" 2>/dev/null | jq -r '.version // "unknown"' || echo "unknown")
+                new_version=$(jq -r '.version // "unknown"' "$json_file")
+                
+                commit_msg="chore($pkg): update $old_version -> $new_version"
+              else
+                commit_msg="chore($pkg): update package"
+              fi
+              
+              echo "Committing changes for $pkg: $commit_msg"
+              git add "$pkg_dir"
+              git commit -m "$commit_msg"
+              changes_made=true
+            fi
+          done
+
+          if [ "$changes_made" = true ]; then
+            git push
+            echo "Successfully pushed all package updates."
+          else
+            echo "No packages were updated. Skipping push."
+          fi
