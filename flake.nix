@@ -15,6 +15,10 @@
       forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
+      overlays.default = final: prev: {
+        ftrepo = import ./default.nix { pkgs = final; };
+      };
+
       packages = forAllSystems (
         system:
         let
