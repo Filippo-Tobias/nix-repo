@@ -1,5 +1,5 @@
 {
-  "version": "1.95.45",
-  "url": "https://brave-browser-apt-nightly.s3.brave.com/pool/main/b/brave-browser-nightly/brave-browser-nightly_1.95.45_amd64.deb",
-  "hash": "0gcydvjrgg7xk17qqqv14fx8s42qdhbfajl93ybs9b6baw93ixaz"
+  "version": "1.95.61",
+  "url": "https://github.com/brave/brave-browser/releases/download/v1.95.61/brave-browser-nightly_1.95.61_amd64.deb",
+  "hash": "0va6cdgvbjli9s6s8xv00l7pg95wn5s3r9j4ijpbgvlfrciv3nba"
 }
