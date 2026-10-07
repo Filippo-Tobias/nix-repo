@@ -1,6 +1,6 @@
 {
   "pname": "wlr-shot",
-  "version": "1.10.0",
-  "hash": "sha256-EhvEBBRgv30mUYLsaCYlsWADKAdZnQEKTfz9DZJJOzk=",
-  "url": "https://github.com/sjourdois/wlr-utils/releases/download/v1.10.0/wlr-utils-x86_64-unknown-linux-gnu.tar.xz"
+  "version": "1.11.1",
+  "hash": "sha256-dU/H3rRyjAQgZX/FSMIo81lWBEnznTRtVbOYIgj7r5g=",
+  "url": "https://github.com/sjourdois/wlr-utils/releases/download/v1.11.1/wlr-utils-x86_64-unknown-linux-gnu.tar.xz"
 }
