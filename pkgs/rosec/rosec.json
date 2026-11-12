@@ -1,7 +1,7 @@
 {
-  "version": "0.0.38",
-  "url": "https://github.com/jmylchreest/rosec/releases/download/v0.0.38/rosec-0.0.38-x86_64-unknown-linux-gnu.tar.gz",
-  "hash": "01l9xlam8q2sb53mm1ikrag8l6isy1424nka57sf0yir3anjr387",
-  "wasm_url": "https://github.com/jmylchreest/rosec/releases/download/v0.0.38/rosec-provider-bitwarden-pm-0.0.38.wasm.tar.gz",
-  "wasm_hash": "1h6ziahfrqwrkf7c4r48ssnwb63hry28bdmmip2bm9m66zlzrd1j"
+  "version": "0.0.39",
+  "url": "https://github.com/jmylchreest/rosec/releases/download/v0.0.39/rosec-0.0.39-x86_64-unknown-linux-gnu.tar.gz",
+  "hash": "0x0x6v70drs5xkpn2pilwsgf0p04xak95mw3xldj4gam698g25ch",
+  "wasm_url": "https://github.com/jmylchreest/rosec/releases/download/v0.0.39/rosec-provider-bitwarden-pm-0.0.39.wasm.tar.gz",
+  "wasm_hash": "1gpsgw6qavgcb80kzpxa5545mbw59r7pclf48azmcjmm6dl2h879"
 }
